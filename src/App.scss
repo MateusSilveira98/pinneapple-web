@@ -1,8 +1,29 @@
-@import '~bulma/bulma';
+@import "~bulma/bulma";
 @import "./views/styles.scss";
 * {
   margin: 0;
   padding: 0;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
+}
+.is-justify-center {
+  justify-content: center !important;
+}
+.is-justify-left {
+  justify-content: flex-start !important;
+}
+.is-justify-right {
+  justify-content: flex-end !important;
+}
+.is-justify-space-between {
+  justify-content: space-between !important;
+}
+.is-justify-space-around {
+  justify-content: space-around !important;
+}
+input {
+  &:focus, &:focus-within {
+    outline: #f7b239;
+    border-color: #f7b239;
+  }
 }

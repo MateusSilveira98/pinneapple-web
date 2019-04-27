@@ -16,43 +16,63 @@
             <p class="subtitle has-text-centered">Pineapple System</p>
           </header>
           <div class="card-content">
-            <div class="content">
+            <form @submit.prevent="login(user)">
+              <div class="content">
+                <div class="field">
+                  <p class="control has-icons-left has-icons-right">
+                    <input
+                      class="input"
+                      type="email"
+                      v-validate="'required|email'"
+                      name="email"
+                      placeholder="exemplo@ex.com"
+                      v-model="user.email"
+                    >
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                  </p>
+                  <span
+                    v-if="errors.has('email')"
+                    class="has-text-danger"
+                  >{{ errors.first('email') }}</span>
+                </div>
+                <div class="field">
+                  <p class="control has-icons-left">
+                    <input
+                      class="input"
+                      type="password"
+                      placeholder="sua senha aqui"
+                      v-model="user.password"
+                      maxlength="6"
+                      v-validate="'required'"
+                      name="senha"
+                      @keyup.enter="login(user)"
+                    >
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </p>
+                  <span
+                    v-if="errors.has('senha')"
+                    class="has-text-danger"
+                  >{{ errors.first('senha') }}</span>
+                </div>
+              </div>
               <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                  <input class="input" type="email" placeholder="Email" v-model="user.email">
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                  </span>
+                <p class="control">
+                  <input type="submit" value="Entrar" class="button is-success is-fullwidth">
                 </p>
               </div>
               <div class="field">
-                <p class="control has-icons-left">
-                  <input
-                    class="input"
-                    type="password"
-                    placeholder="Password"
-                    v-model="user.password"
-                    @keyup.enter="login(user)"
-                  >
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-lock"></i>
-                  </span>
+                <p class="control">
+                  <router-link
+                    :to="`usuarios/cadastro`"
+                    class="button is-primary is-fullwidth"
+                  >Cadastrar</router-link>
                 </p>
               </div>
-            </div>
-            <div class="field">
-              <p class="control">
-                <button class="button is-success is-fullwidth" @click="login(user)">Entrar</button>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control">
-                <router-link
-                  :to="`usuarios/cadastro`"
-                  class="button is-primary is-fullwidth"
-                >Cadastrar</router-link>
-              </p>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -73,12 +93,14 @@ export default {
     }
   },
   methods: {
-    login(user) {
-      this.$store.dispatch("login", user).then(() => {
-        if (this.messageClass == 'success') {
+    async login(user) {
+      const isValid = await this.$validator.validate();
+      if (isValid) {
+        await this.$store.dispatch("login", user);
+        if (this.messageClass == "success") {
           this.$router.push("/");
         }
-      });
+      }
     }
   }
 };

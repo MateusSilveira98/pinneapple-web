@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Loading :show="loading"></Loading>
+    <Loading :showLoading="loading"></Loading>
     <Notification
-      @close="openNotification"
-      :open="openNotification"
+      @close="showNotification = $event"
+      :open="showNotification"
       :type="messageClass"
       :duration="2500"
       :message="message"
@@ -32,12 +32,12 @@ export default {
   },
   watch: {
     loading(newValue) {
-      this.openNotification = !newValue;
+      this.showNotification = !newValue;
     }
   },
   data() {
     return {
-      openNotification: false
+      showNotification: false
     };
   }
 };

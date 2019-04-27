@@ -1,5 +1,5 @@
 <template>
-    <div class="loading" v-if='show'>
+    <div class="loading" v-if='showLoading'>
       <i class="icon is-large fas fa-spinner fa-pulse"></i>	
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
   props: {
-    show: {type:Boolean, default: false}
+    showLoading: {type:Boolean, default: false}
   }
 }
 </script>

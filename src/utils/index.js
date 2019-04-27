@@ -15,11 +15,11 @@ const localstorage = {
 }
 const callback = (commit, response) => {
   if (response.type == 'success') {
-    commit('LOADING')
-    commit('SUCCESS_MESSAGE', {response})
+    commit('LOADING');
+    commit('SUCCESS_MESSAGE', {response});
   } else {
-    commit('LOADING')
-    commit('FAIL_MESSAGE', { response })
+    commit('LOADING');
+    commit('FAIL_MESSAGE', { response });
   }
 }
 export default {

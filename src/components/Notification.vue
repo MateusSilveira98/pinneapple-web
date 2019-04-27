@@ -27,7 +27,7 @@ export default {
   methods: {
     closeNotification() {
       this.show = false;
-      this.$emit('close', this.show);
+      this.$emit('close', false);
     },
     openNotification() {
       if (this.openPermanently) {
@@ -43,11 +43,6 @@ export default {
       if (newValue) {
         this.openNotification();
       }
-    }
-  },
-  mounted() {
-    if (this.open) {
-      this.openNotification();
     }
   }
 };
