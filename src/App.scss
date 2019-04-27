@@ -21,7 +21,10 @@
 .is-justify-space-around {
   justify-content: space-around !important;
 }
-input {
+.is-align-center {
+  align-items: center;
+}
+input.input {
   &:focus, &:focus-within {
     outline: #f7b239;
     border-color: #f7b239;

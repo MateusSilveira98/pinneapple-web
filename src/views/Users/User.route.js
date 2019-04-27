@@ -11,7 +11,7 @@ let route = [
     component: UserRegister
   },
   {
-    path: '/usuarios/editar/:id',
+    path: '/usuarios/editar',
     component: UserEdit
   }
 ]

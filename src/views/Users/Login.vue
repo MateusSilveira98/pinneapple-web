@@ -98,6 +98,7 @@ export default {
       if (isValid) {
         await this.$store.dispatch("login", user);
         if (this.messageClass == "success") {
+          this.$store.dispatch('getLoggedUser');
           this.$router.push("/");
         }
       }

@@ -10,11 +10,11 @@ const router = new Router({
   routes
 })
 router.beforeEach((to, from, next) => {
-  const user = Utils.localstorage.get('user');
+  const token = Utils.localstorage.get('token');
   if (to.path === '/usuarios/cadastro') {
     next()
-  } else if (user && user.token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`
+  } else if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     next()
   } else {
     if (to.path !== '/login') {

@@ -2,8 +2,12 @@ import service from '@/store/services';
 import Utils from '@/utils/index';
 
 const state = {
+  loggedUser: {}
 }
 const mutations = {
+  'GET_USER'(state, {loggedUser}) {
+    state.loggedUser = loggedUser;
+  }
 }
 const actions = {
   async createUser({ commit }, payload) {
@@ -15,6 +19,7 @@ const actions = {
     commit('LOADING');
     let response = await service.edit(payload, 'user/edit');
     Utils.callback(commit, response.data);
+    Utils.localstorage.set('user', response.data.payload);
   },
   async login({ commit }, payload) {
     commit('LOADING');
@@ -23,6 +28,8 @@ const actions = {
     if (response._id) {
       commit('LOADING');
       commit('SUCCESS_MESSAGE', {response: {message: 'Autorizado! :)'}});
+      Utils.localstorage.set('token', response.token);
+      delete response.token;
       Utils.localstorage.set('user', response);
     } else {
       commit('LOADING');
@@ -30,8 +37,9 @@ const actions = {
     }
 
   },
-  async getUserById({ commit }, id) {
-
+  async getLoggedUser({ commit }) {
+    const loggedUser = Utils.localstorage.get('user');
+    commit('GET_USER', {loggedUser});
   }
 }
 

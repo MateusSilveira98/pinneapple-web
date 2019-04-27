@@ -50,7 +50,7 @@
                       placeholder="no máximo 6 caractéres"
                       maxlength="6"
                       v-model="user.password"
-                      v-validate="'required|min:6'"
+                      v-validate=" userProp && userProp.name ? '' : 'required|min:6'"
                       name="senha"
                     >
                   </div>
@@ -80,7 +80,17 @@
 export default {
   props: {
     title: String,
-    user: Object
+    userProp: Object
+  },
+  data() {
+    return {
+      user: {}
+    }
+  },
+  watch: {
+    userProp(value) {
+      this.user = value
+    }
   },
   methods: {
     async save(user) {
