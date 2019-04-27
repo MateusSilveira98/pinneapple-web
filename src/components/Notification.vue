@@ -27,6 +27,7 @@ export default {
   methods: {
     closeNotification() {
       this.show = false;
+      this.$emit('close', this.show);
     },
     openNotification() {
       if (this.openPermanently) {

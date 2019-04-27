@@ -67,10 +67,17 @@ export default {
       user: {}
     };
   },
+  computed: {
+    messageClass() {
+      return this.$store.state.messageClass;
+    }
+  },
   methods: {
     login(user) {
       this.$store.dispatch("login", user).then(() => {
-        this.$router.push("/");
+        if (this.messageClass == 'success') {
+          this.$router.push("/");
+        }
       });
     }
   }

@@ -25,6 +25,7 @@ const actions = {
     response = response.data;
     if (response._id) {
       commit('LOADING')
+      commit('SUCCESS_MESSAGE', {response: {message: 'Autorizado! :)'}})
       Utils.localstorage.set('user', response);
     } else {
       commit('LOADING')
