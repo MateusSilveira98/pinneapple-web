@@ -1,0 +1,26 @@
+<template>
+    <div class="loading" v-if='show'>
+      <i class="icon is-large fas fa-spinner fa-pulse"></i>	
+    </div>
+</template>
+
+<script>
+export default {
+  props: {
+    show: {type:Boolean, default: false}
+  }
+}
+</script>
+
+<style scoped lang='scss'>
+.loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #90bc428c;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>

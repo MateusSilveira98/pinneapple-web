@@ -1,0 +1,10 @@
+{
+  "API": {
+    "dev_url": "http://localhost:3000/"
+  },
+  "CLOUDINARY": {
+    "url": "https://api.cloudinary.com/v1_1/mateus-costa/image/upload",
+    "preset": "wtt-preset",
+    "folder": "wtt"
+  }
+}
