@@ -39,6 +39,7 @@ export default {
   methods: {
     logout() {
       Utils.localstorage.remove('user');
+      Utils.localstorage.remove('token');
       window.location.reload();
     }
   }

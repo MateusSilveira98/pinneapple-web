@@ -1,0 +1,20 @@
+.products {
+  .product {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1em;
+    border-radius: 4px;
+    color: white;
+    background: #90bc42;
+  }
+  .icons {
+    i, svg {
+      margin: 0 0.2em;
+      cursor: pointer;
+      &:hover {
+        color: black;
+      }
+    }
+  }
+}
