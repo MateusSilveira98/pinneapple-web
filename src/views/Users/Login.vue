@@ -30,7 +30,7 @@
                       v-model="user.email"
                     >
                     <span class="icon is-small is-left">
-                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                      <i class="fa fa-envelope is-pineapple-orange" aria-hidden="true"></i>
                     </span>
                   </p>
                   <span
@@ -52,7 +52,7 @@
                       @keyup.enter="login(user)"
                     >
                     <span class="icon is-small is-left">
-                      <i class="fa fa-lock" aria-hidden="true"></i>
+                      <i  class="fa fa-lock is-pineapple-orange" aria-hidden="true"></i>
                     </span>
                   </p>
                   <span
@@ -63,15 +63,15 @@
               </div>
               <div class="field">
                 <p class="control">
-                  <input type="submit" value="Entrar" class="button is-success is-fullwidth">
+                  <router-link
+                    :to="`usuarios/cadastro`"
+                    class="is-primary"
+                  >Cadastrar-se</router-link>
                 </p>
               </div>
               <div class="field">
                 <p class="control">
-                  <router-link
-                    :to="`usuarios/cadastro`"
-                    class="button is-primary is-fullwidth"
-                  >Cadastrar</router-link>
+                  <input type="submit" value="Entrar" class="button is-pineapple is-fullwidth">
                 </p>
               </div>
             </form>

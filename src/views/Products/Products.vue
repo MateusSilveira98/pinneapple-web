@@ -10,13 +10,13 @@
             <span>{{product.name}}</span>
             <div class="icons">
               <span>
-                <i @click="handleTable(product.name, 'close')" v-if="findTableName(product.name)" class="fa fa-eye"></i>
-                <i @click="handleTable(product.name, 'open')" v-else class="fa fa-eye-slash"></i>
+                <i @click="handleTable(product.name, 'close')" :title='`Fechar vizualização ${product.name}`' v-if="findTableName(product.name)" class="fa fa-eye"></i>
+                <i @click="handleTable(product.name, 'open')" :title='`Vizualizar ${product.name}`'  v-else class="fa fa-eye-slash"></i>
               </span>
               <router-link class="has-text-white" :to="`produtos/editar/${product._id}`">
-                <i class="fa fa-edit"></i>
+                <i :title='`Editar produto: ${product.name}`' class="fa fa-edit"></i>
               </router-link>
-              <i @click='handleModal(product)' class="fa fa-trash-o"></i>
+              <i :title='`Excluir produto: ${product.name}`' @click='handleModal(product)' class="fa fa-trash-o"></i>
             </div>
           </div>
           <div class="wrap-tables" v-if="findTableName(product.name)">
@@ -121,7 +121,14 @@
           <p>Nenhum produto encontrado</p>
         </template>
       </div>
-      <ConfirmModal @send='deleteProduct' @close='handleModal' :text="textToModal" :showModal='showModal' :item='productToModal' :title="'Excluir produto'"></ConfirmModal>
+      <ConfirmModal 
+        @send='deleteProduct'  
+        @close='handleModal' 
+        :text="textToModal" 
+        :showModal='showModal' 
+        :item='productToModal'
+        :title="'Excluir produto'"
+      ></ConfirmModal>
     </section>
   </article>
 </template>
@@ -137,7 +144,7 @@ export default {
       showTable: [],
       showModal: false,
       productToModal: {},
-      textToModal: '' 
+      textToModal: ''
     };
   },
   computed: {

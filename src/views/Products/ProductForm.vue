@@ -85,7 +85,7 @@
                     <a class="button is-default" @click="cancel()">Cancelar</a>
                   </div>
                   <div class="control">
-                    <input type="submit" class="button is-success" value="Salvar">
+                    <input type="submit" class="button is-pineapple" value="Salvar">
                   </div>
                 </div>
               </form>

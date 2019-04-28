@@ -11,7 +11,7 @@
                   <label class="label">Nome:</label>
                   <div class="control">
                     <input
-                      class="input"
+                      class="input is-capitalize"
                       type="text"
                       placeholder="seu nome aqui: Fulano Costa"
                       v-model="user.name"
@@ -64,7 +64,7 @@
                     <a class="button is-default" @click="cancel()">Cancelar</a>
                   </div>
                   <div class="control">
-                    <input type="submit" class="button is-success" value="Salvar">
+                    <input type="submit" class="button is-pineapple" value="Salvar">
                   </div>
                 </div>
               </form>
@@ -94,6 +94,7 @@ export default {
   },
   methods: {
     async save(user) {
+      user.email = user.email.toLowerCase();
       const isValid = await this.$validator.validate();
       if (isValid) this.$emit("save", user);
     },

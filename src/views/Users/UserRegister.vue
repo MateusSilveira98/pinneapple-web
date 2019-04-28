@@ -1,6 +1,6 @@
 <template>
   <article class="user-register">
-    <UserForm @cancel='cancel' @save='create' :user='user' :title='"Cadastro de Usuário"'></UserForm>
+    <UserForm @cancel='cancel' @save='create' :user='user' :title='"Criar usuário"'></UserForm>
   </article>
 </template>
 

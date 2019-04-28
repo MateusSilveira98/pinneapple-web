@@ -24,27 +24,48 @@
 .is-align-center {
   align-items: center;
 }
-input.input {
-  &:focus,
-  &:focus-within {
-    outline: #f7b239;
-    border-color: #f7b239;
+input.input, textarea.textarea {
+  &::placeholder {
+    font-weight: bold;
+  } 
+  &:focus {
+    outline: #90bc42;
+    border-color: #90bc42;
   }
 }
 .is-none {
   display: none !important;
 }
-.button.is-pineapple.is-outlined {
-  background-color: transparent;
-  border-color: #90bc42;
-  color: #90bc42;
+.is-pineapple-orange {
+  color: #f7b239;
+  &.is-outlined {
+    background-color: transparent;
+    border-color: #f7b239;
+  }
   &:hover,
   &:focus {
+    background-color: #f7b239;
+    border-color: #f7b239;
+    color: #fff;
+  }
+}
+.is-pineapple {
+  &:hover,
+  &:focus,
+  &.button {
     background-color: #90bc42;
     border-color: #90bc42;
     color: #fff;
   }
+  &.is-outlined {
+    background-color: transparent;
+    border-color: #90bc42;
+    color: #90bc42;
+  }
 }
 i {
   font-size: 1.2rem;
+}
+.is-capitalize {
+  text-transform: capitalize;
 }
