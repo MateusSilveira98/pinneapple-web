@@ -9,12 +9,17 @@
     background: #90bc42;
   }
   .icons {
-    i,
-    svg {
+    display: flex;
+    align-items: flex-start;
+    i{
+      font-size: 1.2rem;
       margin: 0 0.2em;
       cursor: pointer;
       &:hover {
         color: black;
+      }
+      &:active {
+        font-size: 1.1rem;
       }
     }
   }
@@ -49,6 +54,9 @@
         }
       }
     }
+  }
+  .rate {
+    color: #f7b239;
   }
 }
 

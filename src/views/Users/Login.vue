@@ -29,7 +29,7 @@
                       v-model="user.email"
                     >
                     <span class="icon is-small is-left">
-                      <i class="fas fa-envelope"></i>
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                   </p>
                   <span
@@ -50,7 +50,7 @@
                       @keyup.enter="login(user)"
                     >
                     <span class="icon is-small is-left">
-                      <i class="fas fa-lock"></i>
+                      <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
                   </p>
                   <span

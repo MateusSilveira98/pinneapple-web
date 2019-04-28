@@ -1,6 +1,6 @@
 <template>
     <div class="loading" v-if='showLoading'>
-      <i class="icon is-large fas fa-spinner fa-pulse"></i>	
+      <i class="icon is-large fa fa-spinner fa-pulse"></i>	
     </div>
 </template>
 
@@ -22,5 +22,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 20rem;
+    color: white;
 }
 </style>

@@ -3,22 +3,25 @@
     <section class="section">
       <div class="container">
         <h1 class="title">Produtos</h1>
-        <div class="results">
+        <div class="results" v-for="product in allProducts" :key="product.name">
           <div class="product">
-            <span>Nome do produto</span>
+            <span>{{product.name}}</span>
             <div class="icons">
-              <span
-                :style="openTable ? {color: 'black'} : {color: 'white'}"
-                @click="handleTable()"
-              >
-                <i class="fas fa-eye"></i>
+              <span @click="handleTable()">
+                <i v-if="!openTable" class="fa fa-eye"></i>
+                <i v-else class="fa fa-eye-slash"></i>
               </span>
-              <i class="far fa-edit"></i>
-              <i class="fas fa-trash-alt"></i>
+              <router-link class="has-text-white" :to="`produtos/editar/${product._id}`">
+                <i class="fa fa-edit"></i>
+              </router-link>
+              <i class="fa fa-trash-o"></i>
             </div>
           </div>
-          <div class="wrap-tables" v-if='showTable'>
-            <div :class="openTable ? 'fadeInDown animated' : 'fadeOutUp animated'" class="table-desktop">
+          <div class="wrap-tables" v-if="showTable">
+            <div
+              :class="openTable ? 'fadeInDown animated' : 'fadeOutUp animated'"
+              class="table-desktop"
+            >
               <table class="table is-fullwidth">
                 <thead>
                   <tr>
@@ -31,52 +34,38 @@
                 <tbody>
                   <tr>
                     <td>
-                      <img
-                        src="https://res.cloudinary.com/mateus-costa/image/upload/v1556306089/wtt/pineapple.png"
-                        alt="NOME"
-                      >
+                      <img :src="product.image" :alt="product.name">
                     </td>
                     <td>
-                      <textarea class="textarea" readonly>blblblblblblblblblblblblblblblblblblblblblblblblbl</textarea>
+                      <textarea v-model="product.description" class="textarea" readonly></textarea>
                     </td>
                     <td>
                       <div class="is-flex">
-                        <span>
-                          <i class="fas fa-star"></i>
-                        </span>
-                        <span>
-                          <i class="fas fa-star"></i>
-                          <i class="far fa-star"></i>
-                        </span>
-                        <span>
-                          <i class="fas fa-star"></i>
-                          <i class="far fa-star"></i>
-                        </span>
-                        <span>
-                          <i class="fas fa-star"></i>
-                          <i class="far fa-star"></i>
-                        </span>
-                        <span>
-                          <i class="fas fa-star"></i>
-                          <i class="far fa-star"></i>
+                        <span class="rate" v-for="index in [1,2,3,4,5]" :key="index">
+                          <span v-if="product.internRate >= index">
+                            <i class="fa fa-star"></i>
+                          </span>
+                          <span v-else>
+                            <i class="fa fa-star-o"></i>
+                          </span>
                         </span>
                       </div>
                     </td>
-                    <td>12/12/2012</td>
+                    <td>{{product.createdAt | brDate}}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div :class="openTable ? 'fadeInDown animated' : 'fadeOutUp animated'" class="table-mobile">
+            <div
+              :class="openTable ? 'fadeInDown animated' : 'fadeOutUp animated'"
+              class="table-mobile"
+            >
               <div class="row">
                 <div class="header">
                   <span>Foto</span>
                 </div>
                 <div class="body has-text-centered">
-                  <img
-                    src="https://res.cloudinary.com/mateus-costa/image/upload/v1556306089/wtt/pineapple.png"
-                    alt="NOME"
-                  >
+                  <img :src="product.image" :alt="product.name">
                 </div>
               </div>
               <div class="row">
@@ -84,7 +73,7 @@
                   <span>Descrição</span>
                 </div>
                 <div class="body">
-                  <p class="description">blblblblblblblblblblblblblblblblblblblblblblblblbl</p>
+                  <p class="description">{{product.description}}</p>
                 </div>
               </div>
               <div class="row">
@@ -93,20 +82,13 @@
                 </div>
                 <div class="body">
                   <div class="is-flex">
-                    <span>
-                      <i class="fas fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="far fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="far fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="far fa-star"></i>
-                    </span>
-                    <span>
-                      <i class="far fa-star"></i>
+                    <span class="rate" v-for="index in [1,2,3,4,5]" :key="index">
+                      <span v-if="product.internRate >= index">
+                        <i class="fa fa-star"></i>
+                      </span>
+                      <span v-else>
+                        <i class="fa fa-star-o"></i>
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -116,7 +98,7 @@
                   <span>Data de criação</span>
                 </div>
                 <div class="body">
-                  <span>12/12/2012</span>
+                  <span>{{product.createdAt | brDate}}</span>
                 </div>
               </div>
             </div>
@@ -135,16 +117,23 @@ export default {
       showTable: false
     };
   },
+  computed: {
+    allProducts() {
+      return this.$store.state.Products.all;
+    }
+  },
   methods: {
     handleTable() {
       this.openTable = !this.openTable;
-      if(this.openTable) 
-          this.showTable = !this.showTable;
+      if (this.openTable) this.showTable = !this.showTable;
       else
         setTimeout(() => {
           this.showTable = !this.showTable;
         }, 1000);
     }
+  },
+  async mounted() {
+    await this.$store.dispatch("getAllProducts");
   }
 };
 </script>

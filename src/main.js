@@ -4,7 +4,7 @@ import router from '@/routes/index';
 import store from '@/store/index';
 import axios from 'axios';
 import config from './config.json';
-// import 'animate.css';
+import '@/filters/index';
 import VeeValidate, { Validator } from "vee-validate";
 import pt_BR from "vee-validate/dist/locale/pt_BR";
 
