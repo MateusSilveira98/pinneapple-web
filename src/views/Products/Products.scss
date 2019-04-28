@@ -9,12 +9,63 @@
     background: #90bc42;
   }
   .icons {
-    i, svg {
+    i,
+    svg {
       margin: 0 0.2em;
       cursor: pointer;
       &:hover {
         color: black;
       }
     }
+  }
+  img {
+    width: 80px;
+  }
+  .table {
+    thead th {
+      color: #90bc42;
+      border-bottom: 2px solid #f7b239;
+    }
+  }
+  .table-desktop {
+    display: block;
+  }
+  .table-mobile {
+    display: none;
+    .row {
+      margin: 0.1em 0 0.5em;
+      .header {
+        background: #f7b239;
+        color: white;
+        border-radius: 4px 4px 0 0;
+        padding: 0.5em 1em;
+      }
+      .body {
+        border: 1px solid #f7b239;
+        padding: 1em;
+        .description {
+          width: 100%;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .table-desktop {
+    display: none !important;
+  }
+  .table-mobile {
+    display: block !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .table-desktop {
+    display: none !important;
+  }
+  .table-mobile {
+    display: block !important;
   }
 }

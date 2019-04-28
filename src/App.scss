@@ -1,4 +1,5 @@
 @import "~bulma/bulma";
+@import "~animate.css/animate.css";
 @import "./views/styles.scss";
 * {
   margin: 0;
@@ -29,4 +30,7 @@ input.input {
     outline: #f7b239;
     border-color: #f7b239;
   }
+}
+.is-none {
+  display: none !important;
 }
