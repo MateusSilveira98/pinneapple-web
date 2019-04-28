@@ -14,7 +14,7 @@ export default {
 
 <style scoped lang='scss'>
 .loading {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     background: #90bc428c;

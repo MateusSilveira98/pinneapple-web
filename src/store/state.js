@@ -1,7 +1,6 @@
 export default {
   loading: false,
-  image: '',
-  showHeader: true,
+  image: {},
   message: '',
   messageClass: ''
 }

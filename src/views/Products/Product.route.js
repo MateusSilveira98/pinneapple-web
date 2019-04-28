@@ -8,15 +8,15 @@ let route = [
     component: Products
   },
   {
-    path: '/produto/cadastro',
+    path: '/produtos/cadastro',
     component: ProductRegister
   },
   {
-    path: '/produto/editar/:id',
+    path: '/produtos/editar/:id',
     component: ProductEdit
   },
   {
-    path: '/produto/:id',
+    path: '/produtos/:id',
     component: ProductDetails
   },
 ]

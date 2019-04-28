@@ -1,20 +1,20 @@
 import services from './services'
+import axios from 'axios';
+import Utils from '@/utils/index';
 export default {
-  async uploadImageToCloudinary({ commit }, file) {
-    commit('LOADING')
+  async uploadImageToStorage({ commit }, file) {
+    commit('LOADING');
     try {
-      let response = await services.uploadImageToCloudinary(file)
+      let response = await services.uploadImageToStorage(file);
       if (response.data) {
-        let image = response.data
-        commit('LOADING')
-        commit('IMAGE_UPLOADED_SUCCESS', { image })
+        let image = response.data;
+        commit('LOADING');
+        commit('IMAGE_UPLOADED_SUCCESS', { image });
+        axios.defaults.headers.common['Authorization'] = `Bearer ${Utils.localstorage.get('token')}`;
       }
     } catch (error) {
-      commit('LOADING')
-      console.log(error.request)
+      commit('LOADING');
+      console.log(error);
     }
-  },
-  setHeader({ commit }) {
-    commit('SET_HEADER')
   }
 }

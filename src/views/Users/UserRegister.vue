@@ -26,7 +26,7 @@ export default {
     },
     async create(user) {
       await this.$store.dispatch('createUser', user);
-      if(this.messageClass == 'success') this.$router.push('/login');
+      if(this.messageClass == 'success') this.cancel();
     }
   }
 }

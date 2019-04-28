@@ -5,7 +5,6 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
 }
 .is-justify-center {
   justify-content: center !important;
@@ -26,11 +25,26 @@
   align-items: center;
 }
 input.input {
-  &:focus, &:focus-within {
+  &:focus,
+  &:focus-within {
     outline: #f7b239;
     border-color: #f7b239;
   }
 }
 .is-none {
   display: none !important;
+}
+.button.is-pineapple.is-outlined {
+  background-color: transparent;
+  border-color: #90bc42;
+  color: #90bc42;
+  &:hover,
+  &:focus {
+    background-color: #90bc42;
+    border-color: #90bc42;
+    color: #fff;
+  }
+}
+i {
+  font-size: 1.2rem;
 }

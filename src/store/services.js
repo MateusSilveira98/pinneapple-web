@@ -1,17 +1,17 @@
 import axios from 'axios'
 import config from '@/config.json'
 export default {
-  uploadImageToCloudinary(file) {
-    const cloudinary = config.CLOUDINARY;
-    let formData = new FormData()
-    formData.append('file', file)
-    formData.append('upload_preset', cloudinary.preset)
-    formData.append('folder', cloudinary.folder)
+  uploadImageToStorage(file) {
+    const storage = config.IMG_STORAGE;
+    let formData = new FormData();
+    formData.append('image', file);
+    formData.append('folder', storage.folder);
+    delete axios.defaults.headers.common["Authorization"];
     return axios({
-      url: cloudinary.url,
+      url: storage.url,
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'multipart/form-data'
       },
       data: formData
     })
