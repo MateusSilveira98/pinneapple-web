@@ -16,17 +16,17 @@ export default {
     }
   },
   computed: {
-    messageClass() {
-      return this.$store.state.messageClass;
+    success() {
+      return this.$store.state.success;
     }
   },
   methods: {
     cancel(value) {
-      this.$router.push('/login');
+      this.$router.replace('/login');
     },
     async create(user) {
       await this.$store.dispatch('createUser', user);
-      if(this.messageClass == 'success') this.cancel();
+      if(this.success) this.cancel();
     }
   }
 }

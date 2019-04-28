@@ -5,7 +5,7 @@ const state = {
   loggedUser: {}
 }
 const mutations = {
-  'GET_USER'(state, {loggedUser}) {
+  'GET_USER'(state, { loggedUser }) {
     state.loggedUser = loggedUser;
   }
 }
@@ -19,7 +19,13 @@ const actions = {
     commit('LOADING');
     let response = await service.edit(payload, 'user/edit');
     Utils.callback(commit, response.data);
-    Utils.localstorage.set('user', response.data.payload);
+    const user = {
+      _id: response.data.payload._id,
+      name: response.data.payload.name, 
+      email: response.data.payload.email, 
+      createdAt: response.data.payload.createdAt
+    };
+    Utils.localstorage.set('user', user);
   },
   async login({ commit }, payload) {
     commit('LOADING');
@@ -27,19 +33,20 @@ const actions = {
     response = response.data;
     if (response._id) {
       commit('LOADING');
-      commit('SUCCESS_MESSAGE', {response: {message: 'Autorizado! :)'}});
       Utils.localstorage.set('token', response.token);
       delete response.token;
       Utils.localstorage.set('user', response);
+      commit('SUCCESS');
     } else {
       commit('LOADING');
+      commit('PUSH_NOTIFICATION');
       commit('FAIL_MESSAGE', { response });
     }
 
   },
   async getLoggedUser({ commit }) {
     const loggedUser = Utils.localstorage.get('user');
-    commit('GET_USER', {loggedUser});
+    commit('GET_USER', { loggedUser });
   }
 }
 

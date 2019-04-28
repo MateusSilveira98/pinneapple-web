@@ -4,7 +4,8 @@
       <div class="container">
         <h1 class="title">Produtos</h1>
         <router-link :to='`produtos/cadastro`' class="button is-outlined is-pineapple">Criar produto</router-link>
-        <div class="results" v-for="product in allProducts" :key="product.name">
+        <template v-if='allProducts.length > 0'>
+        <div class="results" v-for="product in allProducts" :key="product._id">
           <div class="product">
             <span>{{product.name}}</span>
             <div class="icons">
@@ -15,7 +16,7 @@
               <router-link class="has-text-white" :to="`produtos/editar/${product._id}`">
                 <i class="fa fa-edit"></i>
               </router-link>
-              <i class="fa fa-trash-o"></i>
+              <i @click='handleModal(product)' class="fa fa-trash-o"></i>
             </div>
           </div>
           <div class="wrap-tables" v-if="findTableName(product.name)">
@@ -115,16 +116,28 @@
             </div>
           </div>
         </div>
+        </template>
+        <template v-else>
+          <p>Nenhum produto encontrado</p>
+        </template>
       </div>
+      <ConfirmModal @send='deleteProduct' @close='handleModal' :text="textToModal" :showModal='showModal' :item='productToModal' :title="'Excluir produto'"></ConfirmModal>
     </section>
   </article>
 </template>
 
 <script>
+import ConfirmModal from '@/components/ConfirmModal';
 export default {
+  components: {
+    ConfirmModal
+  },
   data() {
     return {
-      showTable: []
+      showTable: [],
+      showModal: false,
+      productToModal: {},
+      textToModal: '' 
     };
   },
   computed: {
@@ -133,6 +146,17 @@ export default {
     }
   },
   methods: {
+    handleModal(product) {
+      this.showModal = !this.showModal;
+      if(this.showModal) {
+        this.productToModal = product;
+        this.textToModal = `quer excluir este produto? ${product.name}`;
+      }
+      else {
+        this.textToModal = '';
+        this.productToModal = {};
+      }
+    },
     findTableName(name) {
       return this.showTable.find(table => table.name == name);
     },
@@ -148,6 +172,11 @@ export default {
       else {
         this.showTable.push({name, type});
       }
+    },
+    async deleteProduct(product) {
+      product.deleted = true;
+      await this.$store.dispatch('editProduct', product);
+      await this.$store.dispatch("getAllProducts");
     }
   },
   async mounted() {

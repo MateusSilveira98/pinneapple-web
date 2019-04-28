@@ -1,7 +1,7 @@
-import Login from './Login'
-import UserRegister from './UserRegister'
-import UserEdit from './UserEdit'
-let route = [
+import Login from './Login';
+import UserRegister from './UserRegister';
+import UserEdit from './UserEdit';
+const route = [
   {
     path: '/login',
     component: Login
@@ -14,5 +14,5 @@ let route = [
     path: '/usuarios/editar',
     component: UserEdit
   }
-]
+];
 export default route

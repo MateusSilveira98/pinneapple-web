@@ -8,7 +8,7 @@
               <p class="title">{{title}}</p>
               <form @submit.prevent="save(product)">
                 <div class="field">
-                  <label class="label">Foto:</label>
+                  <label class="label">Foto do produto:</label>
                   <div class="control">
                     <PhotoUpload
                       :src='product.image'
@@ -20,7 +20,7 @@
                   </div>
                 </div>
                 <div class="field">
-                  <label class="label">Nome:</label>
+                  <label class="label">Nome do produto:</label>
                   <div class="control">
                     <input
                       class="input"
@@ -34,7 +34,7 @@
                   <span v-if="errors.has('nome')" class="has-text-danger">{{ errors.first('nome') }}</span>
                 </div>
                 <div class="field">
-                  <label class="label">Descrição:</label>
+                  <label class="label">Descrição do produto</label>
                   <div class="control">
                     <textarea
                       class="textarea"
@@ -50,7 +50,7 @@
                   >{{ errors.first('descrição') }}</span>
                 </div>
                 <div class="field">
-                  <label class="label">Nota interna:</label>
+                  <label class="label">Nota interna do produto:</label>
                   <div class="control">
                     <span class="rate" v-for="index in [1,2,3,4,5]" :key="index">
                       <span v-if="product.internRate >= index" @click="handleInternRate(index)">
@@ -67,7 +67,7 @@
                   </div>
                 </div>
                 <div class="field">
-                  <label class="label">Status:</label>
+                  <label class="label">Status do produto:</label>
                   <div class="control">
                     <span @click="product.status = !product.status" class="rate">
                       <span v-if='product.status'>

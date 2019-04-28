@@ -34,10 +34,13 @@ export default {
     },
     loggedUser() {
       return this.$store.state.Users.loggedUser;
-    }
+    },
+    toNotify() {
+      return this.$store.state.toNotify;
+    },
   },
   watch: {
-    loading(newValue) {
+    toNotify(newValue) {
       this.showNotification = !newValue;
     },
     loggedUser(newValue) {

@@ -1,8 +1,7 @@
-import Products from './Products'
-import ProductRegister from './ProductRegister'
-import ProductEdit from './ProductEdit'
-import ProductDetails from './ProductDetails'
-let route = [
+import Products from './Products';
+import ProductRegister from './ProductRegister';
+import ProductEdit from './ProductEdit';
+const route = [
   {
     path: '/',
     component: Products
@@ -14,10 +13,6 @@ let route = [
   {
     path: '/produtos/editar/:id',
     component: ProductEdit
-  },
-  {
-    path: '/produtos/:id',
-    component: ProductDetails
-  },
-]
-export default route
+  }
+];
+export default route;

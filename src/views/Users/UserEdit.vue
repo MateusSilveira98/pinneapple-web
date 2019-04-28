@@ -17,8 +17,8 @@ export default {
     }
   },
   computed: {
-    messageClass() {
-      return this.$store.state.messageClass;
+    success() {
+      return this.$store.state.success;
     },
     loggedUser() {
       return this.$store.state.Users.loggedUser
@@ -35,7 +35,7 @@ export default {
     },
     async edit(user) {
       await this.$store.dispatch('editUser', user);
-      if(this.messageClass == 'success') this.$router.push('/');
+      if(this.success) this.$router.replace('/');
     },
   },
   mounted() {

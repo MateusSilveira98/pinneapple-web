@@ -19,6 +19,7 @@
             <form @submit.prevent="login(user)">
               <div class="content">
                 <div class="field">
+                  <label class='label'>Email:</label>
                   <p class="control has-icons-left has-icons-right">
                     <input
                       class="input"
@@ -38,6 +39,7 @@
                   >{{ errors.first('email') }}</span>
                 </div>
                 <div class="field">
+                  <label class='label'>Senha:</label>
                   <p class="control has-icons-left">
                     <input
                       class="input"
@@ -88,8 +90,8 @@ export default {
     };
   },
   computed: {
-    messageClass() {
-      return this.$store.state.messageClass;
+    success() {
+      return this.$store.state.success;
     }
   },
   methods: {
@@ -97,9 +99,9 @@ export default {
       const isValid = await this.$validator.validate();
       if (isValid) {
         await this.$store.dispatch("login", user);
-        if (this.messageClass == "success") {
+        if (this.success) {
           this.$store.dispatch('getLoggedUser');
-          this.$router.push("/");
+          this.$router.replace("/");
         }
       }
     }

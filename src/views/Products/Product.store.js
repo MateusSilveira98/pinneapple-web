@@ -29,11 +29,12 @@ const actions = {
     commit('GET_ALL_SUCCESS', { payload })
   },
   async getProductById({ commit }, id) {
-    let response = await service.getById(`product/${id}`);
+    let response = await service.getById(id, `product`);
     let payload = response.data;
     if (payload._id) {
       commit('GET_BY_ID_SUCCESS', { payload })
     } else {
+      commit('PUSH_NOTIFICATION');
       commit('FAIL_MESSAGE', { response })
     }
   }

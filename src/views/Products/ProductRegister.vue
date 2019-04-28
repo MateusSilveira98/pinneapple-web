@@ -1,6 +1,6 @@
 <template>
   <article class="product-register">
-    <ProductForm @cancel="cancel" @save="create" :title="'Cadastro de produtos'"></ProductForm>
+    <ProductForm @cancel="cancel" @save="create" :title="'Criar produto'"></ProductForm>
   </article>
 </template>
 
@@ -11,8 +11,8 @@ export default {
     ProductForm
   },
   computed: {
-    messageClass() {
-      return this.$store.state.messageClass;
+    success() {
+      return this.$store.state.success;
     }
   },
   methods: {
@@ -21,7 +21,7 @@ export default {
     },
     async create(product) {
       await this.$store.dispatch('createProduct', product);
-      if(this.messageClass == 'success') this.cancel();
+      if(this.success) this.cancel();
     }
   }
 };
