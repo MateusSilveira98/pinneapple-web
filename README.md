@@ -1,29 +1,8 @@
 # pinneapple-web
+A VUE.js web-application that manage products and users;
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Set up
+ *node: 10.6.0;
+ *npm i: to install dependencies;
+ *npm start: to start application;
+ *npm run build: to build for production;
